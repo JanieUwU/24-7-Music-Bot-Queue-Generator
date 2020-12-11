@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>24-7queue generator</title>
+</head>
+
+<body>
+  <div id="bg">
+
+  </div>
+  
+ 
+  <h1>24-7queue generator</h1>
+
+  <p>Queue generator for the <a href="javascript:shell.openExternal('https://24-7music.com')"
+      style="font-size: 1em;">24/7 🔊 | discord music bot</a>.</p>
+  <p>How do I <a href="javascript:shell.openExternal('https://24-7music.com/premiumcommands#cmd-exportqueue')"
+      style="font-size: 1em;">export</a> or <a
+      href="javascript:shell.openExternal('https://24-7music.com/premiumcommands#cmd-importqueue')"
+      style="font-size: 1em;">import</a> .24-7queue files from the bot?</p>
+  <p id="errorTextBox"></p>
+  <div class="apiForm">
+    <div class="apiFormItem">
+      <p>Video/playlist link:</p>
+      <input type="text" name="ytUrl" id="ytUrl" placeholder="https://www.youtube.com/watch?v=01234455">
+      <button id="addSongButton">Import</button>
+    </div>
+
+    <div>
+
+      <button id="importQueue">Import queue</button>
+      <button id="generateQueue">Generate queue</button>
+      <button id="clearQueue">Clear queue</button>
+      <button id="removeLast">Remove last song</button>
+    </div>
+
+    <div id="listView"></div>
+  </div>
+
+  <script src="./renderer.js"></script>
+  
+</body>
+<link rel="stylesheet" type="text/css" media="screen" href="./main.css" />
+<script src="./lowPoly-background.js" type="text/javascript"></script>
+
+</html>
