@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "package:mac": "electron-builder --mac",
-    "package:win": "electron-builder --win"
+    "package:win": "electron-builder --win",
+    "publish:win": "electron-builder --win -p always"
   },
   "build": {
     "appId": "com.JustWorks.24-7queue-generator",
@@ -24,9 +25,9 @@
     },
     "publish": [
       {
-        "owner": "JustWorks",
+        "owner": "JanieUwU",
         "provider": "github",
-        "repo": "none",
+        "repo": "24-7-Music-Bot-Queue-Generator",
         "private": true
       }
     ],
