@@ -7,6 +7,9 @@ var log = require('electron-log')
 const ytdl = require('ytdl-core')
 const ytpl = require ('ytpl')
 const DurationTime = require('duration-time-format')
+require('update-electron-app')({
+  repo: 'JanieUwU/24-7-Music-Bot-Queue-Generator'
+})
 
 // init log
 log.transports.file.level = 'info'
