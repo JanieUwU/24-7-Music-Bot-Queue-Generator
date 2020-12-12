@@ -77,6 +77,22 @@
     button:focus {
       outline: none;
     }
+    
+    /* #checkUpdate{
+      float: right;
+      margin-right: 0px;
+      margin-left: 100px;
+      height: 10px;
+      width: 150px;
+      text-align: center;
+      text-size-adjust: 5px;
+      text-align: justify;
+    }
+
+    #h1Text {
+      margin-left: 250px;
+      margin-right: 0px;
+    } */
 
 
     #listView {

@@ -14,6 +14,11 @@ addSongButton.addEventListener('click', event => {
     }
 })
 
+// const updateButton = document.getElementById('checkUpdate')
+// updateButton.addEventListener('click', event => {
+//     ipc.send('checkUpdate')
+// })
+
 // const removeSongButton = document.getElementById('removeSongButton')
 // removeSongButton.addEventListener('click', event => {
 //     if (document.getElementById('ytUrl').value) {

@@ -8,7 +8,7 @@ const ytdl = require('ytdl-core')
 const ytpl = require ('ytpl')
 const DurationTime = require('duration-time-format')
 const { autoUpdater } = require("electron-updater")
-autoUpdater.checkForUpdatesAndNotify()
+autoUpdater.checkForUpdatesAndNotify();
 
 // init log
 log.transports.file.level = 'info'
@@ -23,6 +23,17 @@ log.transports.file.stream = fs.createWriteStream('log.txt')
 let mainWindow
 
 let queue = []
+
+// ipcMain.on('checkUpdate', async () => {
+  
+//   function checkForUpdates (menuItem, focusedWindow, event) {
+//     updater = menuItem
+//     updater.enabled = false
+//     autoUpdater.checkForUpdates()
+//   }
+//   module.exports.checkForUpdates = checkForUpdates
+//   require('child_process').fork('./updater.js');
+// })
 
 ipcMain.on('addSong', async (event, _songInfo) => {
   var inputLink = _songInfo.url
