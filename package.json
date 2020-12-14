@@ -57,6 +57,6 @@
     "electron-log": "^4.3.0",
     "electron-updater": "^4.3.5",
     "ytdl-core": "^4.0.5",
-    "ytpl": "github:TimeForANinja/node-ytpl#wip-api-adjustments"
+    "ytpl": "^2.0.1"
   }
 }
