@@ -40,7 +40,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
   function contains(str, text) {
     return (str.indexOf(text) >= 0)
  }
-  const watchPlistcheck = inputLink.match(/(youtube.com|youtu.be)\/(playlist)(\?list=)(\S+)?/)
+  const watchPlistcheck = inputLink.match(/(youtube.com|youtu.be|music.youtube.com)\/(playlist)(\?list=)(\S+)?/)
   if (watchPlistcheck) {
     //mainWindow.webContents.send('errorEvent', 'Playlist = True!')
       try {
@@ -68,7 +68,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
     }
   }
   else {
-    const watchCheck = inputLink.match(/(youtube\.com\/watch\?v=|youtu\.be)(\S+)?/)
+    const watchCheck = inputLink.match(/(youtube\.com\/watch\?v=|youtu\.be\/|music.youtube.com\/watch\?v=)(\S+)?/)
 
     if (watchCheck) {
       try {
