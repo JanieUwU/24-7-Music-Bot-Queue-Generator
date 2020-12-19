@@ -73,12 +73,13 @@ ipc.on('ListUpdate', (event, message) => {
             innerContainer.appendChild(videoElement)
             // make move song up button
             const upButton = document.createElement('button')
-            upButton.style.height = '50px'
+            upButton.style.height = '30px'
             upButton.style.width = '30px'
             upButton.style.float = 'right'
             upButton.style.marginRight = '0px'
             upButton.style.marginLeft = 'auto'
-            upButton.innerText = '↑'
+            upButton.style.backgroundImage = "url(./assets/buttons/up.png)"
+            upButton.style.backgroundSize = "cover"
             innerContainer.appendChild(upButton)
             // make upButton click listener
             upButton.addEventListener('click', event => {
@@ -88,12 +89,13 @@ ipc.on('ListUpdate', (event, message) => {
             })
             // make move song down button
             const downButton = document.createElement('button')
-            downButton.style.height = '50px'
+            downButton.style.height = '30px'
             downButton.style.width = '30px'
             downButton.style.float = 'right'
             downButton.style.marginRight = '0px'
             downButton.style.marginLeft = '2px'
-            downButton.innerText = '↓'
+            downButton.style.backgroundImage = "url(./assets/buttons/down.png)"
+            downButton.style.backgroundSize = "cover"
             innerContainer.appendChild(downButton)
             // make downButton click listener
             downButton.addEventListener('click', event => {
