@@ -71,12 +71,42 @@ ipc.on('ListUpdate', (event, message) => {
             const videoElement = document.createElement('p')
             videoElement.innerText = video.title
             innerContainer.appendChild(videoElement)
+            // make move song up button
+            const upButton = document.createElement('button')
+            upButton.style.height = '50px'
+            upButton.style.width = '30px'
+            upButton.style.float = 'right'
+            upButton.style.marginRight = '0px'
+            upButton.style.marginLeft = 'auto'
+            upButton.innerText = '↑'
+            innerContainer.appendChild(upButton)
+            // make upButton click listener
+            upButton.addEventListener('click', event => {
+                ipc.send('moveUp', {
+                    index: key,
+                })
+            })
+            // make move song down button
+            const downButton = document.createElement('button')
+            downButton.style.height = '50px'
+            downButton.style.width = '30px'
+            downButton.style.float = 'right'
+            downButton.style.marginRight = '0px'
+            downButton.style.marginLeft = '2px'
+            downButton.innerText = '↓'
+            innerContainer.appendChild(downButton)
+            // make downButton click listener
+            downButton.addEventListener('click', event => {
+                ipc.send('moveDown', {
+                    index: key,
+                })
+            })
             // make remove button
             const removeButton = document.createElement('button')
             removeButton.style.height = '50px'
             removeButton.style.float = 'right'
             removeButton.style.marginRight = '0px'
-            removeButton.style.marginLeft = 'auto'
+            removeButton.style.marginLeft = '2px'
             removeButton.innerText = 'Delete'
             innerContainer.appendChild(removeButton)
             // make remove button click listener

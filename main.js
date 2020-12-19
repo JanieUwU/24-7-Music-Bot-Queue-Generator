@@ -171,6 +171,82 @@ ipcMain.on('remove', async (event, _songInfo) => {
   mainWindow.webContents.send('errorEvent', 'Deleted: ' + removedTitle)
 })
 
+ipcMain.on('moveUp', async (event, _songInfo) => {
+  // queue.pop()
+  const { index } = _songInfo
+  const upTitle = queue[index].title
+  const oldPosUp = index
+  const newPosUp = index - 1
+  
+
+  function arrMove(arr, oldIndex, newIndex) {
+    if (newIndex >= arr.length) {
+      let i = newIndex - arr.length + 1
+      while (i--) {
+        arr.push(undefined)
+      }
+    }
+    arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+    return arr;
+  }
+  if (newPosUp < 0) {
+    const newPos2Up = queue.length - 1
+    console.log(arrMove(queue, oldPosUp, newPos2Up))
+    console.log(oldPosUp)
+    console.log(newPosUp)
+    console.log(newPos2Up)
+    const pos2NumUp = newPos2Up + 1
+    mainWindow.webContents.send('ListUpdate', queue)
+    mainWindow.webContents.send('errorEvent', 'Moved: ' + upTitle + ' to #' + pos2NumUp)
+  } else {
+    console.log(arrMove(queue, oldPosUp, newPosUp))
+    console.log(oldPosUp)
+    console.log(newPosUp)
+    const posNumUp = newPosUp + 1
+    mainWindow.webContents.send('ListUpdate', queue)
+    mainWindow.webContents.send('errorEvent', 'Moved: ' + upTitle + ' to #' + posNumUp)
+  }
+  //queue.splice(index, 1)
+})
+
+ipcMain.on('moveDown', async (event, _songInfo) => {
+  // queue.pop()
+  const { index } = _songInfo
+  const downTitle = queue[index].title
+  const oldPosDown = index
+  const newPosDown = parseInt(index) + 1
+  
+
+  function arrMove(arr, oldIndex, newIndex) {
+    if (newIndex >= arr.length) {
+      let i = newIndex - arr.length + 1
+      while (i--) {
+        arr.push(undefined)
+      }
+    }
+    arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+    return arr;
+  }
+  if (newPosDown > queue.length - 1) {
+    const newPos2Down = 0
+    console.log(arrMove(queue, oldPosDown, newPos2Down))
+    console.log(oldPosDown)
+    console.log(newPosDown)
+    console.log(newPos2Down)
+    const pos2NumDown = newPos2Down + 1
+    mainWindow.webContents.send('ListUpdate', queue)
+    mainWindow.webContents.send('errorEvent', 'Moved: ' + downTitle + ' to #' + pos2NumDown)
+  } else {
+    console.log(arrMove(queue, oldPosDown, newPosDown))
+    console.log(oldPosDown)
+    console.log(newPosDown)
+    const posNumDown = parseInt(newPosDown) + 1
+    mainWindow.webContents.send('ListUpdate', queue)
+    mainWindow.webContents.send('errorEvent', 'Moved: ' + downTitle + ' to #' + posNumDown)
+  }
+  //queue.splice(index, 1)
+})
+
 ipcMain.on('importQueue', async () => {
   const filePath = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
