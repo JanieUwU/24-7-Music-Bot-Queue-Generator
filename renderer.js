@@ -80,6 +80,14 @@ ipc.on('ListUpdate', (event, message) => {
             upButton.style.marginLeft = 'auto'
             upButton.style.backgroundImage = "url(./assets/buttons/up.png)"
             upButton.style.backgroundSize = "cover"
+            upButton.onmouseover = function() {
+                upButton.style.backgroundImage = "url(./assets/buttons/uphover.png)"
+                upButton.style.backgroundSize = "cover"
+            }
+            upButton.onmouseout = function() {
+                upButton.style.backgroundImage = "url(./assets/buttons/up.png)"
+                upButton.style.backgroundSize = "cover"
+            }
             innerContainer.appendChild(upButton)
             // make upButton click listener
             upButton.addEventListener('click', event => {
@@ -96,6 +104,14 @@ ipc.on('ListUpdate', (event, message) => {
             downButton.style.marginLeft = '2px'
             downButton.style.backgroundImage = "url(./assets/buttons/down.png)"
             downButton.style.backgroundSize = "cover"
+            downButton.onmouseover = function() {
+                downButton.style.backgroundImage = "url(./assets/buttons/downhover.png)"
+                downButton.style.backgroundSize = "cover"
+            }
+            downButton.onmouseout = function() {
+                downButton.style.backgroundImage = "url(./assets/buttons/down.png)"
+                downButton.style.backgroundSize = "cover"
+            }
             innerContainer.appendChild(downButton)
             // make downButton click listener
             downButton.addEventListener('click', event => {
@@ -106,10 +122,22 @@ ipc.on('ListUpdate', (event, message) => {
             // make remove button
             const removeButton = document.createElement('button')
             removeButton.style.height = '50px'
+            removeButton.style.width = '80px'
             removeButton.style.float = 'right'
             removeButton.style.marginRight = '0px'
             removeButton.style.marginLeft = '2px'
             removeButton.innerText = 'Delete'
+            removeButton.onmouseover = function() {
+                removeButton.style.backgroundImage = "url(./assets/buttons/deletehover.png)"
+                removeButton.style.backgroundSize = "cover"
+                //removeButton.innerText.
+            }
+            removeButton.onmouseout = function() {
+                //removeButton.style.backgroundImage = "url(./assets/buttons/delete.png)"
+                //removeButton.style.backgroundSize = "cover"
+                //removeButton.innerText = 'Delete'
+                removeButton.style.backgroundImage = null
+            }
             innerContainer.appendChild(removeButton)
             // make remove button click listener
             removeButton.addEventListener('click', event => {
