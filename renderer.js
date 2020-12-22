@@ -130,13 +130,15 @@ ipc.on('ListUpdate', (event, message) => {
             removeButton.onmouseover = function() {
                 removeButton.style.backgroundImage = "url(./assets/buttons/deletehover.png)"
                 removeButton.style.backgroundSize = "cover"
-                //removeButton.innerText.
+                //removeButton.innerText = ''
+                removeButton.style.color = 'transparent'
             }
             removeButton.onmouseout = function() {
                 //removeButton.style.backgroundImage = "url(./assets/buttons/delete.png)"
                 //removeButton.style.backgroundSize = "cover"
                 //removeButton.innerText = 'Delete'
                 removeButton.style.backgroundImage = null
+                removeButton.style.color = 'black'
             }
             innerContainer.appendChild(removeButton)
             // make remove button click listener
