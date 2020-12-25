@@ -119,6 +119,34 @@ ipc.on('ListUpdate', (event, message) => {
                     index: key,
                 })
             })
+            // make edit button
+            const editButton = document.createElement('button')
+            editButton.style.height = '30px'
+            editButton.style.width = '30px'
+            editButton.style.float = 'right'
+            editButton.style.marginRight = '0px'
+            editButton.style.marginLeft = '2px'
+            editButton.style.backgroundImage = "url(./assets/buttons/edit.png)"
+            editButton.style.backgroundSize = "cover"
+            editButton.style.backgroundColor = 'transparent'
+            editButton.onmouseover = function() {
+                editButton.style.backgroundImage = "url(./assets/buttons/edit.png)"
+                editButton.style.backgroundSize = "cover"
+                editButton.style.outlineStyle = 'solid'
+                editButton.style.outlineColor = 'white'
+            }
+            editButton.onmouseout = function() {
+                editButton.style.backgroundImage = "url(./assets/buttons/edit.png)"
+                editButton.style.backgroundSize = "cover"
+                editButton.style.outlineStyle = 'none'
+            }
+            innerContainer.appendChild(editButton)
+            // make downButton click listener
+            editButton.addEventListener('click', event => {
+                ipc.send('editSong', {
+                    index: key,
+                })
+            })
             // make remove button
             const removeButton = document.createElement('button')
             removeButton.style.height = '50px'

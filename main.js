@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, dialog } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog, ipcRenderer, remote, shell } = require('electron')
 const fs = require("fs")
 const fsPromises = fs.promises
 const path = require("path")
@@ -21,6 +21,7 @@ log.transports.file.stream = fs.createWriteStream('log.txt')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let editWindow
 
 let queue = []
 
@@ -64,6 +65,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
     } catch (err) {
       log.error(err)
       mainWindow.webContents.send('errorEvent', err.message)
+      shell.beep()
       return
     }
   }
@@ -88,10 +90,12 @@ ipcMain.on('addSong', async (event, _songInfo) => {
       } catch (err) {
         log.error(err)
         mainWindow.webContents.send('errorEvent', err.message)
+        shell.beep()
         return
       }
     } else {
       mainWindow.webContents.send('errorEvent', '"' + inputLink + '"' + ' is not a valid YouTube link!')
+      shell.beep()
     }
   }  
 })
@@ -159,6 +163,7 @@ ipcMain.on('removeLast', async () => {
   }
   else{
     mainWindow.webContents.send('errorEvent', 'No songs in queue to remove!')
+    shell.beep()
   }
 })
 
@@ -272,6 +277,7 @@ ipcMain.on('importQueue', async () => {
     mainWindow.webContents.send('errorEvent', 'Successfully imported ' + importAmount + ' songs!')
   }else {
     mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
+    shell.beep()
   }
 })
 
@@ -293,14 +299,105 @@ app.on('ready', () => {
   })
   mainWindow.setMenuBarVisibility(false)
 
-  mainWindow.loadFile(path.join(__dirname, '/index.html'))
+  mainWindow.loadFile(path.join(__dirname, './index.html'))
   mainWindow.show()
 })
+
+ipcMain.on('editSong', async (event, _songInfo) => {
+  // queue.pop()
+  let editWindow
+  const { index } = _songInfo
+  var songEditTitle = queue[index].title
+  //queue.splice(index, 1)
+  
+  editWindow = new BrowserWindow({
+    parent: mainWindow,
+    width: 400,
+    height: 300,
+    show: false,
+    icon: __dirname + '/assets/logo.ico',
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+  editWindow.setMenuBarVisibility(false)
+  editWindow.closable = false
+  editWindow.loadFile(path.join(__dirname, './edit.html'))
+  editWindow.show()
+  const songEditPos = index
+  const songEditPosUser = parseInt(index) + 1
+  editWindow.webContents.on('did-finish-load', () => {
+    editWindow.webContents.send('positionEvent', songEditPosUser)
+    editWindow.webContents.send('titleEvent', songEditTitle)
+  })
+  ipcMain.once('saveChanges', async (event, _songInfo) => {
+    var editTitle = _songInfo.title
+    var editPos = parseInt(_songInfo.position) - 1
+    queue[songEditPos].title = editTitle
+
+
+    function arrayMove(arr, oldIndex, newIndex) {
+      while (oldIndex < 0) {
+        oldIndex += arr.length
+      }
+      while (newIndex < 0) {
+        newIndex += arr.length
+      }
+      if (newIndex >= arr.length) {
+        let i = newIndex - arr.length + 1
+        while (i--) {
+          arr.push(undefined)
+        }
+      }
+      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+      return arr
+    }
+    if (editPos >= 0 && editPos < queue.length) {
+      console.log(queue)
+      console.log(arrayMove(queue, songEditPos, editPos))
+      console.log(songEditPos)
+      console.log(editPos)
+      mainWindow.webContents.send('ListUpdate', queue)
+      mainWindow.webContents.send('errorEvent', 'Moved: ' + editTitle + ' to #' + _songInfo.position)
+    } else {
+      mainWindow.webContents.send('errorEvent', 'Number not within acceptable range!')
+      shell.beep()
+    }
+    // editWindow.webContents.send('editTitle', editTitle)
+    // editWindow.webContents.send('editPos', editPos)
+    
+    editWindow.destroy()
+  })
+  //editWindow.webContents.send('positionEvent', songEditPos)
+  //console.log(songEditPos)
+  //mainWindow.webContents.send('ListUpdate', queue)
+  //mainWindow.webContents.send('errorEvent', 'Deleted: ' + removedTitle)
+})
+// ipcMain.on('editTitle', (event, message) => {
+//   console.log(message)
+// })
+
+
+
+ipcMain.on('saveChangesFail', async (event, _songInfo) => {
+  mainWindow.webContents.send('errorEvent', 'Error saving song info')
+  shell.beep()
+})
+
+// ipcMain.on('saveChanges', async (event, _songInfo) => {
+//   const { index } = _songInfo
+  
+
+//   //queue.splice(index, 1)
+//   mainWindow.webContents.send('ListUpdate', queue)
+//   mainWindow.webContents.send('errorEvent', 'Deleted: ' + removedTitle)
+// })
 
 app.on('window-all-closed', function () {
   log.info("all config windows closed")
   app.quit()
 })
+
 
 //when a "global" error occurs
 process.on('unhandledRejection', err => {

@@ -165,3 +165,17 @@
     -moz-animation-delay: -8s;
     animation-delay: -8s
 }
+
+#Position {
+margin: 50px;
+margin-top: 20px;
+}
+
+#Title {
+  margin: 50px;
+  margin-bottom: 20px;
+}
+
+#saveChanges {
+  margin-top: 0px;
+}
