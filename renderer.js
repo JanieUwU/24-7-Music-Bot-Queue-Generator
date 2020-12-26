@@ -91,7 +91,7 @@ ipc.on('ListUpdate', (event, message) => {
             innerContainer.appendChild(upButton)
             // make upButton click listener
             upButton.addEventListener('click', event => {
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     ipc.send('moveTop', {
                         index: key,
                     })
@@ -122,7 +122,7 @@ ipc.on('ListUpdate', (event, message) => {
             innerContainer.appendChild(downButton)
             // make downButton click listener
             downButton.addEventListener('click', event => {
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     ipc.send('moveEnd', {
                         index: key,
                     })
