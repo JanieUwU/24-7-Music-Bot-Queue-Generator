@@ -91,9 +91,16 @@ ipc.on('ListUpdate', (event, message) => {
             innerContainer.appendChild(upButton)
             // make upButton click listener
             upButton.addEventListener('click', event => {
-                ipc.send('moveUp', {
-                    index: key,
-                })
+                if (event.ctrlKey) {
+                    ipc.send('moveTop', {
+                        index: key,
+                    })
+                } else {
+                    ipc.send('moveUp', {
+                        index: key,
+                    })
+                }
+                
             })
             // make move song down button
             const downButton = document.createElement('button')
@@ -115,9 +122,15 @@ ipc.on('ListUpdate', (event, message) => {
             innerContainer.appendChild(downButton)
             // make downButton click listener
             downButton.addEventListener('click', event => {
-                ipc.send('moveDown', {
-                    index: key,
-                })
+                if (event.ctrlKey) {
+                    ipc.send('moveEnd', {
+                        index: key,
+                    })
+                } else {
+                    ipc.send('moveDown', {
+                        index: key,
+                    })
+                }
             })
             // make edit button
             const editButton = document.createElement('button')

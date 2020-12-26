@@ -213,6 +213,52 @@ ipcMain.on('moveUp', async (event, _songInfo) => {
   }
   //queue.splice(index, 1)
 })
+// Move Top Function
+ipcMain.on('moveTop', async (event, _songInfo) => {
+  // queue.pop()
+  const { index } = _songInfo
+  const topTitle = queue[index].title
+  const oldPosTop = index
+  const newPosTop = 0
+  
+
+  function arrMove(arr, oldIndex, newIndex) {
+    if (newIndex >= arr.length) {
+      let i = newIndex - arr.length + 1
+      while (i--) {
+        arr.push(undefined)
+      }
+    }
+    arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+    return arr;
+  }
+  console.log(arrMove(queue, oldPosTop, newPosTop))
+  mainWindow.webContents.send('ListUpdate', queue)
+  mainWindow.webContents.send('errorEvent', 'Moved: ' + topTitle + ' to top of the queue!')
+})
+//Move Bottom Function
+ipcMain.on('moveEnd', async (event, _songInfo) => {
+  // queue.pop()
+  const { index } = _songInfo
+  const endTitle = queue[index].title
+  const oldPosEnd = index
+  const newPosEnd = parseInt(queue.length) - 1
+  
+
+  function arrMove(arr, oldIndex, newIndex) {
+    if (newIndex >= arr.length) {
+      let i = newIndex - arr.length + 1
+      while (i--) {
+        arr.push(undefined)
+      }
+    }
+    arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+    return arr;
+  }
+  console.log(arrMove(queue, oldPosEnd, newPosEnd))
+  mainWindow.webContents.send('ListUpdate', queue)
+  mainWindow.webContents.send('errorEvent', 'Moved: ' + endTitle + ' to end of the queue!')
+})
 
 ipcMain.on('moveDown', async (event, _songInfo) => {
   // queue.pop()
