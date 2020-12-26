@@ -332,6 +332,7 @@ ipcMain.on('importQueue', async () => {
       console.log(obj.title)
       console.log(obj.link)
       console.log(parseInt(obj.time))
+      if (!obj.title || !obj.link || !parseInt(obj.time)) continue
       const songImport = {
         title: obj.title,
         link: obj.link,
@@ -339,7 +340,8 @@ ipcMain.on('importQueue', async () => {
         //isOriginal: isOriginalBool
       }
       queueImport.push(songImport)
-  }
+   }
+    if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
     queue = queueImport
     queueImport = []
 
