@@ -1,4 +1,4 @@
-# 24-7 queue generator <img src="https://raw.githubusercontent.com/JanieUwU/24-7-Music-Bot-Queue-Generator/master/assets/logo.png?token=APDTRHO7JQSVLZASHYWJYO2746S3Y" alt="24/7 Logo" width="30"/>
+# 24-7 queue generator <img src="https://raw.githubusercontent.com/JanieUwU/24-7-Music-Bot-Queue-Generator/master/assets/logo.png" alt="24/7 Logo" width="30"/>
 A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
 
 # Download
