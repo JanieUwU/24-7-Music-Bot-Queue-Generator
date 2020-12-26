@@ -33,7 +33,7 @@ let queue = []
 //     autoUpdater.checkForUpdates()
 //   }
 //   module.exports.checkForUpdates = checkForUpdates
-//   require('child_process').fork('./updater.js');
+//   require('child_process').fork('./updater.js')
 // })
 
 ipcMain.on('addSong', async (event, _songInfo) => {
