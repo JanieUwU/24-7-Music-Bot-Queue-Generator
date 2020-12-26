@@ -308,6 +308,7 @@ ipcMain.on('moveDown', async (event, _songInfo) => {
   //queue.splice(index, 1)
 })
 
+let queueImport = []
 ipcMain.on('importQueue', async () => {
   const filePath = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
@@ -325,8 +326,22 @@ ipcMain.on('importQueue', async () => {
   })
   const jsonData = JSON.parse(fileData)
   if (Array.isArray(jsonData)) {
-
-    queue = jsonData
+    for(var i = 0; i < jsonData.length; i++) {
+      var obj = jsonData[i]
+  
+      console.log(obj.title)
+      console.log(obj.link)
+      console.log(parseInt(obj.time))
+      const songImport = {
+        title: obj.title,
+        link: obj.link,
+        time: parseInt(obj.time),
+        //isOriginal: isOriginalBool
+      }
+      queueImport.push(songImport)
+  }
+    queue = queueImport
+    queueImport = []
 
     mainWindow.webContents.send('ListUpdate', queue)
     var importAmount = queue.length
