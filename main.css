@@ -166,16 +166,17 @@
     animation-delay: -8s
 }
 
-#Position {
-margin: 50px;
-margin-top: 20px;
-}
-
-#Title {
-  margin: 50px;
-  margin-bottom: 20px;
-}
-
 #saveChanges {
   margin-top: 0px;
+}
+
+.songEditInfo {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.songEditText {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
