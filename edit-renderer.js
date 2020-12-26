@@ -13,6 +13,7 @@ saveChanges.addEventListener('click', event => {
         ipcEdit.removeAllListeners('editSong')
     } else {
         ipcEdit.send('saveChangesFail')
+        alert('Please input a song position number.')
     }
 })
 

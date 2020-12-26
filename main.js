@@ -232,9 +232,14 @@ ipcMain.on('moveTop', async (event, _songInfo) => {
     arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
     return arr;
   }
-  console.log(arrMove(queue, oldPosTop, newPosTop))
-  mainWindow.webContents.send('ListUpdate', queue)
-  mainWindow.webContents.send('errorEvent', 'Moved: ' + topTitle + ' to top of the queue!')
+  if (oldPosTop == newPosTop) {
+    mainWindow.webContents.send('errorEvent', 'Song already at the top of the queue!')
+    shell.beep()
+  } else {
+    console.log(arrMove(queue, oldPosTop, newPosTop))
+    mainWindow.webContents.send('ListUpdate', queue)
+    mainWindow.webContents.send('errorEvent', 'Moved: ' + topTitle + ' to top of the queue!')
+  }
 })
 //Move Bottom Function
 ipcMain.on('moveEnd', async (event, _songInfo) => {
@@ -255,9 +260,14 @@ ipcMain.on('moveEnd', async (event, _songInfo) => {
     arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
     return arr;
   }
-  console.log(arrMove(queue, oldPosEnd, newPosEnd))
-  mainWindow.webContents.send('ListUpdate', queue)
-  mainWindow.webContents.send('errorEvent', 'Moved: ' + endTitle + ' to end of the queue!')
+  if (oldPosEnd == newPosEnd) {
+    mainWindow.webContents.send('errorEvent', 'Song already at the end of the queue!')
+    shell.beep()
+  } else {
+    console.log(arrMove(queue, oldPosEnd, newPosEnd))
+    mainWindow.webContents.send('ListUpdate', queue)
+    mainWindow.webContents.send('errorEvent', 'Moved: ' + endTitle + ' to end of the queue!')
+  }
 })
 
 ipcMain.on('moveDown', async (event, _songInfo) => {
@@ -426,7 +436,7 @@ ipcMain.on('editSong', async (event, _songInfo) => {
 
 
 ipcMain.on('saveChangesFail', async (event, _songInfo) => {
-  mainWindow.webContents.send('errorEvent', 'Error saving song info')
+  mainWindow.webContents.send('errorEvent', 'Error saving song info, no value given.')
   shell.beep()
 })
 
