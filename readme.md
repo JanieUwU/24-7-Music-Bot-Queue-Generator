@@ -1,4 +1,4 @@
-# 24-7 queue generator <img src="https://raw.githubusercontent.com/JanieUwU/24-7-Music-Bot-Queue-Generator/master/assets/logo.png" alt="24/7 Logo" width="30"/>
+# 24-7 queue generator <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/logo.png" alt="24/7 Logo" width="30"/>
 A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
 
 # Download
@@ -12,7 +12,9 @@ A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
 * Edit each item in the queue file
     * Change song titles
     * Change song position
-    * Move songs up/down in the queue(pressing `ctrl + click` the button moves song to top/end of queue)
+    * Move songs up/down in the queue(pressing `ctrl + click` the button )
+        * Windows: `ctrl + clicking` moves song to top/end of queue
+        * macOS: `Command Key + clicking` moves song to top/end of queue
     * Clear the queue
     * Delete songs
     * Remove last song in the list
