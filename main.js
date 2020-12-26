@@ -341,7 +341,7 @@ ipcMain.on('importQueue', async () => {
       }
       queueImport.push(songImport)
    }
-    if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
+    if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!') && shell.beep()
     queue = queueImport
     queueImport = []
 
