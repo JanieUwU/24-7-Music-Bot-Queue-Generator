@@ -329,9 +329,9 @@ ipcMain.on('importQueue', async () => {
     for(var i = 0; i < jsonData.length; i++) {
       var obj = jsonData[i]
   
-      console.log(obj.title)
-      console.log(obj.link)
-      console.log(parseInt(obj.time))
+      //console.log(obj.title)
+      //console.log(obj.link)
+      //console.log(parseInt(obj.time))
       if (!obj.title || !obj.link || !parseInt(obj.time)) continue
       const songImport = {
         title: obj.title,
