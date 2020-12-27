@@ -10,10 +10,10 @@ A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
     * Imports the files used for the [24/7 Discord Music Bot](https://24-7music.com/)
 
 * Edit each item in the queue file
-    * Edit button opens edit song info window
+    * Edit <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/edit.png" alt="24/7 Logo" height="30" width="30"/> opens edit song info window
         * Edit the song title
         * Edit the song position
-    * Move songs up/down in the queue with up/down buttons
+    * Move songs up or down in the queue with <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/up.png" alt="24/7 Logo" height="30" width="30"/> / <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/down.png" alt="24/7 Logo" height="30" width="30"/>
         * Windows: `ctrl + clicking` moves song to top/end of queue
         * macOS: `command key + clicking` moves song to top/end of queue
     * Clear the queue
