@@ -142,6 +142,11 @@ ipcMain.on('generateQueue', async () => {
     mainWindow.webContents.send('errorEvent', err.message)
     return
   })
+  const rickRoll = savePath.filePath.match(/(rickroll|Rick Roll|RickRoll|Rickroll)(\S+)?/)
+  if (rickRoll) {
+    console.log('Get Rolled!')
+    shell.openExternal('https://www.youtube.com/watch?v=DLzxrzFCyOs')
+  }
   mainWindow.webContents.send('errorEvent', 'Successfully saved queue file!')
   
 
