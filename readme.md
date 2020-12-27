@@ -19,7 +19,7 @@ A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
         * Windows: `ctrl + clicking` moves song to top/end of queue
         * macOS: `command key + clicking` moves song to top/end of queue
     * Clear the queue
-    * Delete songs <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/trash.png" alt="24/7 Logo" height="15" width="15"/>
+    * Delete songs <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/trash.png" alt="24/7 Logo" height="20" width="20"/>
     * Remove last song in the list
     * Export to new file or save over the original file
 
