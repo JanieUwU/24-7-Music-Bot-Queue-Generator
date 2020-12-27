@@ -163,23 +163,19 @@ ipc.on('ListUpdate', (event, message) => {
             // make remove button
             const removeButton = document.createElement('button')
             removeButton.style.height = '50px'
-            removeButton.style.width = '80px'
+            removeButton.style.width = '50px'
+            removeButton.style.backgroundImage = "url(./assets/buttons/trash.png)"
+            removeButton.style.backgroundSize = "cover"
+            removeButton.style.backgroundColor = 'transparent'
+            removeButton.style.backgroundSize = "cover"
             removeButton.style.float = 'right'
             removeButton.style.marginRight = '0px'
             removeButton.style.marginLeft = '2px'
-            removeButton.innerText = 'Delete'
             removeButton.onmouseover = function() {
-                removeButton.style.backgroundImage = "url(./assets/buttons/deletehover.png)"
-                removeButton.style.backgroundSize = "cover"
-                //removeButton.innerText = ''
-                removeButton.style.color = 'transparent'
+                removeButton.style.backgroundImage = "url(./assets/buttons/trashhover.png)"
             }
             removeButton.onmouseout = function() {
-                //removeButton.style.backgroundImage = "url(./assets/buttons/delete.png)"
-                //removeButton.style.backgroundSize = "cover"
-                //removeButton.innerText = 'Delete'
-                removeButton.style.backgroundImage = null
-                removeButton.style.color = 'black'
+                removeButton.style.backgroundImage = "url(./assets/buttons/trash.png)"
             }
             innerContainer.appendChild(removeButton)
             // make remove button click listener
