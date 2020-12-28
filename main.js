@@ -165,6 +165,8 @@ ipcMain.on('generateQueue', async () => {
     } else {
       mainWindow.webContents.send('errorEvent', 'Successfully saved queue file!')
     }
+  } else {
+    mainWindow.webContents.send('errorEvent', 'Successfully saved queue file!')
   }
   
 
