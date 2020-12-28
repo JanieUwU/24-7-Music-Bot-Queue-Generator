@@ -8,6 +8,8 @@ const ytdl = require('ytdl-core')
 const ytpl = require ('ytpl')
 const DurationTime = require('duration-time-format')
 const { autoUpdater } = require("electron-updater")
+const { type } = require('os')
+const { emitWarning } = require('process')
 autoUpdater.checkForUpdatesAndNotify();
 
 // init log
@@ -121,7 +123,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
 //     }
 //   }
 // })
-
+let isFunny
 ipcMain.on('generateQueue', async () => {
   const savePath = await dialog.showSaveDialog({
     title: 'Choose where to safe your queue',
@@ -142,12 +144,28 @@ ipcMain.on('generateQueue', async () => {
     mainWindow.webContents.send('errorEvent', err.message)
     return
   })
-  const rickRoll = savePath.filePath.match(/(rickroll|Rick Roll|RickRoll|Rickroll)(\S+)?/)
+  const rickRoll = savePath.filePath.match(/(rickroll|Rick Roll|RickRoll|Rickroll|rick|Rick)(\S+)?/)
   if (rickRoll) {
-    console.log('Get Rolled!')
-    shell.openExternal('https://www.youtube.com/watch?v=DLzxrzFCyOs')
+    const options = {
+      type: 'question',
+      defaultId: 1,
+      buttons: [ 'Yes', 'No' ],
+      noLink: true,
+      title: 'Inquiry...',
+      message: 'Are you a funny person?',
+      detail: 'I just want to know if you\'re funny or not...'
+    }
+    isFunny = await dialog.showMessageBox(mainWindow, options, (response) => {
+    })
+    console.log(isFunny.response)
+    if (isFunny.response == 0) {
+      console.log('Get Rolled!')
+      mainWindow.webContents.send('errorEvent', 'Get rolled! (Queue file saved)')
+      shell.openExternal('https://www.youtube.com/watch?v=DLzxrzFCyOs')
+    } else {
+      mainWindow.webContents.send('errorEvent', 'Successfully saved queue file!')
+    }
   }
-  mainWindow.webContents.send('errorEvent', 'Successfully saved queue file!')
   
 
   // sent success response back to main window
