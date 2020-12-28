@@ -94,14 +94,14 @@ ipc.on('ListUpdate', (event, message) => {
                     downButton.style.backgroundImage = "url(../buttons/down.png)"
                 }
             })
-            upButton.onmouseover = function() {
-                upButton.style.backgroundImage = "url(../buttons/uphover.png)"
-                upButton.style.backgroundSize = "cover"
-            }
-            upButton.onmouseout = function() {
-                upButton.style.backgroundImage = "url(../buttons/up.png)"
-                upButton.style.backgroundSize = "cover"
-            }
+            // upButton.onmouseover = function() {
+            //     upButton.style.backgroundImage = "url(../buttons/uphover.png)"
+            //     upButton.style.backgroundSize = "cover"
+            // }
+            // upButton.onmouseout = function() {
+            //     upButton.style.backgroundImage = "url(../buttons/up.png)"
+            //     upButton.style.backgroundSize = "cover"
+            // }
             innerContainer.appendChild(upButton)
             
             
@@ -132,14 +132,14 @@ ipc.on('ListUpdate', (event, message) => {
             downButton.style.marginLeft = '2px'
             downButton.style.backgroundImage = "url(../buttons/down.png)"
             downButton.style.backgroundSize = "cover"
-            downButton.onmouseover = function() {
-                downButton.style.backgroundImage = "url(../buttons/downhover.png)"
-                downButton.style.backgroundSize = "cover"
-            }
-            downButton.onmouseout = function() {
-                downButton.style.backgroundImage = "url(../buttons/down.png)"
-                downButton.style.backgroundSize = "cover"
-            }
+            // downButton.onmouseover = function() {
+            //     downButton.style.backgroundImage = "url(../buttons/downhover.png)"
+            //     downButton.style.backgroundSize = "cover"
+            // }
+            // downButton.onmouseout = function() {
+            //     downButton.style.backgroundImage = "url(../buttons/down.png)"
+            //     downButton.style.backgroundSize = "cover"
+            // }
             innerContainer.appendChild(downButton)
             // make downButton click listener
             downButton.addEventListener('click', event => {
