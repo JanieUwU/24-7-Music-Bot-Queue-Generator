@@ -80,6 +80,20 @@ ipc.on('ListUpdate', (event, message) => {
             upButton.style.marginLeft = 'auto'
             upButton.style.backgroundImage = "url(../buttons/up.png)"
             upButton.style.backgroundSize = "cover"
+            // if ctrl is held change image, if released
+            const ctrlPressed = document.getElementById("body")
+            ctrlPressed.addEventListener('keydown', event => {
+                if (event.ctrlKey || event.metaKey) {
+                    upButton.style.backgroundImage = "url(../buttons/movetop.png)"
+                    downButton.style.backgroundImage = "url(../buttons/movebottom.png)"
+                }
+            })
+            ctrlPressed.addEventListener('keyup', event => {
+                if (!event.ctrlKey || !event.metaKey) {
+                    upButton.style.backgroundImage = "url(../buttons/up.png)"
+                    downButton.style.backgroundImage = "url(../buttons/down.png)"
+                }
+            })
             upButton.onmouseover = function() {
                 upButton.style.backgroundImage = "url(../buttons/uphover.png)"
                 upButton.style.backgroundSize = "cover"
@@ -89,6 +103,13 @@ ipc.on('ListUpdate', (event, message) => {
                 upButton.style.backgroundSize = "cover"
             }
             innerContainer.appendChild(upButton)
+            
+            
+            // ipc.on('ctrlTrue', (event, message) => {
+            //     upButton.style.backgroundImage = "url(../buttons/edit.png)"
+            //     console.log(message)
+            // })
+
             // make upButton click listener
             upButton.addEventListener('click', event => {
                 if (event.ctrlKey || event.metaKey) {
