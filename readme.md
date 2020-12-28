@@ -12,14 +12,15 @@ A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
     * Imports the files used for the [24/7 Discord Music Bot](https://24-7music.com/)
 
 * Edit each item in the queue file
-    * Edit <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/edit.png" alt="24/7 Logo" height="15" width="15"/> opens edit song info window
+    * Edit <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/edit.png" alt="edit.png" height="15" width="15"/> opens edit song info window
         * Edit the song title
         * Edit the song position
-    * Move songs up or down in the queue with <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/up.png" alt="24/7 Logo" height="15" width="15"/> <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/down.png" alt="24/7 Logo" height="15" width="15"/>
-        * Windows: `ctrl + clicking` moves song to top/end of queue
-        * macOS: `command key + clicking` moves song to top/end of queue
+    * Move songs up or down in the queue with <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/up.png" alt="up.png" height="15" width="15"/> <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/down.png" alt="down.png" height="15" width="15"/>
+        * Windows: `ctrl + clicking` <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/movetop.png" alt="movetop.png" height="15" width="15"/> <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/movebottom.png" alt="movebottom.png" height="15" width="15"/> moves song to top/end of queue
+        * macOS: `command key + clicking` <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/movetop.png" alt="movetop.png" height="15" width="15"/> <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/movebottom.png" alt="movebottom.png" height="15" width="15"/> moves song to top/end of queue
+
     * Clear the queue
-    * Delete songs <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/trash.png" alt="24/7 Logo" height="20" width="20"/>
+    * Delete songs <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/trash.png" alt="trash.png" height="20" width="20"/>
     * Remove last song in the list
     * Export to new file or save over the original file
 
