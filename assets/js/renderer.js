@@ -78,14 +78,14 @@ ipc.on('ListUpdate', (event, message) => {
             upButton.style.float = 'right'
             upButton.style.marginRight = '0px'
             upButton.style.marginLeft = 'auto'
-            upButton.style.backgroundImage = "url(./assets/buttons/up.png)"
+            upButton.style.backgroundImage = "url(../buttons/up.png)"
             upButton.style.backgroundSize = "cover"
             upButton.onmouseover = function() {
-                upButton.style.backgroundImage = "url(./assets/buttons/uphover.png)"
+                upButton.style.backgroundImage = "url(../buttons/uphover.png)"
                 upButton.style.backgroundSize = "cover"
             }
             upButton.onmouseout = function() {
-                upButton.style.backgroundImage = "url(./assets/buttons/up.png)"
+                upButton.style.backgroundImage = "url(../buttons/up.png)"
                 upButton.style.backgroundSize = "cover"
             }
             innerContainer.appendChild(upButton)
@@ -109,14 +109,14 @@ ipc.on('ListUpdate', (event, message) => {
             downButton.style.float = 'right'
             downButton.style.marginRight = '0px'
             downButton.style.marginLeft = '2px'
-            downButton.style.backgroundImage = "url(./assets/buttons/down.png)"
+            downButton.style.backgroundImage = "url(../buttons/down.png)"
             downButton.style.backgroundSize = "cover"
             downButton.onmouseover = function() {
-                downButton.style.backgroundImage = "url(./assets/buttons/downhover.png)"
+                downButton.style.backgroundImage = "url(../buttons/downhover.png)"
                 downButton.style.backgroundSize = "cover"
             }
             downButton.onmouseout = function() {
-                downButton.style.backgroundImage = "url(./assets/buttons/down.png)"
+                downButton.style.backgroundImage = "url(../buttons/down.png)"
                 downButton.style.backgroundSize = "cover"
             }
             innerContainer.appendChild(downButton)
@@ -139,17 +139,17 @@ ipc.on('ListUpdate', (event, message) => {
             editButton.style.float = 'right'
             editButton.style.marginRight = '0px'
             editButton.style.marginLeft = '2px'
-            editButton.style.backgroundImage = "url(./assets/buttons/edit.png)"
+            editButton.style.backgroundImage = "url(../buttons/edit.png)"
             editButton.style.backgroundSize = "cover"
             editButton.style.backgroundColor = 'transparent'
             editButton.onmouseover = function() {
-                editButton.style.backgroundImage = "url(./assets/buttons/edit.png)"
+                editButton.style.backgroundImage = "url(../buttons/edit.png)"
                 editButton.style.backgroundSize = "cover"
                 editButton.style.outlineStyle = 'solid'
                 editButton.style.outlineColor = 'white'
             }
             editButton.onmouseout = function() {
-                editButton.style.backgroundImage = "url(./assets/buttons/edit.png)"
+                editButton.style.backgroundImage = "url(../buttons/edit.png)"
                 editButton.style.backgroundSize = "cover"
                 editButton.style.outlineStyle = 'none'
             }
@@ -164,7 +164,7 @@ ipc.on('ListUpdate', (event, message) => {
             const removeButton = document.createElement('button')
             removeButton.style.height = '50px'
             removeButton.style.width = '50px'
-            removeButton.style.backgroundImage = "url(./assets/buttons/trash.png)"
+            removeButton.style.backgroundImage = "url(../buttons/trash.png)"
             removeButton.style.backgroundSize = "cover"
             removeButton.style.backgroundColor = 'transparent'
             removeButton.style.backgroundSize = "cover"
@@ -172,10 +172,10 @@ ipc.on('ListUpdate', (event, message) => {
             removeButton.style.marginRight = '0px'
             removeButton.style.marginLeft = '2px'
             removeButton.onmouseover = function() {
-                removeButton.style.backgroundImage = "url(./assets/buttons/trashhover.png)"
+                removeButton.style.backgroundImage = "url(../buttons/trashhover.png)"
             }
             removeButton.onmouseout = function() {
-                removeButton.style.backgroundImage = "url(./assets/buttons/trash.png)"
+                removeButton.style.backgroundImage = "url(../buttons/trash.png)"
             }
             innerContainer.appendChild(removeButton)
             // make remove button click listener

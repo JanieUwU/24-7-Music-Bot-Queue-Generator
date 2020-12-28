@@ -33,7 +33,7 @@ let queue = []
 //     autoUpdater.checkForUpdates()
 //   }
 //   module.exports.checkForUpdates = checkForUpdates
-//   require('child_process').fork('./updater.js')
+//   require('child_process').fork('./assets/js/updater.js')
 // })
 
 ipcMain.on('addSong', async (event, _songInfo) => {
@@ -377,7 +377,7 @@ app.on('ready', () => {
   })
   mainWindow.setMenuBarVisibility(false)
 
-  mainWindow.loadFile(path.join(__dirname, './index.html'))
+  mainWindow.loadFile(path.join(__dirname, './assets/html/index.html'))
   mainWindow.show()
 })
 
@@ -400,7 +400,7 @@ ipcMain.on('editSong', async (event, _songInfo) => {
   })
   editWindow.setMenuBarVisibility(false)
   editWindow.closable = false
-  editWindow.loadFile(path.join(__dirname, './edit.html'))
+  editWindow.loadFile(path.join(__dirname, './assets/html/edit.html'))
   editWindow.show()
   const songEditPos = index
   const songEditPosUser = parseInt(index) + 1
@@ -408,7 +408,7 @@ ipcMain.on('editSong', async (event, _songInfo) => {
     editWindow.webContents.send('positionEvent', songEditPosUser)
     editWindow.webContents.send('titleEvent', songEditTitle)
   })
-  ipcMain.once('saveChanges', async (event, _songInfo) => {
+    ipcMain.once('saveChanges', async (event, _songInfo) => {
     var editTitle = _songInfo.title
     var editPos = parseInt(_songInfo.position) - 1
     queue[songEditPos].title = editTitle
