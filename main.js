@@ -334,6 +334,8 @@ ipcMain.on('moveDown', async (event, _songInfo) => {
 })
 
 let queueImport = []
+let queueImportAmount = []
+let appendQueue
 ipcMain.on('importQueue', async () => {
   const filePath = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
@@ -365,14 +367,53 @@ ipcMain.on('importQueue', async () => {
         //isOriginal: isOriginalBool
       }
       queueImport.push(songImport)
+      queueImportAmount.push(songImport)
    }
     if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!') && shell.beep()
-    queue = queueImport
-    queueImport = []
+    
+    if (queue.length < 1) {
+      queue = queueImport
+      console.log(queue)
+      console.log(queueImport)
+      queueImport = []
+    } else {
+      const options = {
+        type: 'warning',
+        defaultId: 0,
+        buttons: [ 'Cancel', 'Yes', 'No' ],
+        noLink: true,
+        title: 'Append import to current queue?',
+        message: 'Would you like to add the imported queue to the current list?',
+        detail: 'Choosing "Yes" will add the songs imported to the current list, choosing "No" will delete and replace it with the imported songs. You can also cancel the current action.'
+      }
+      appendQueue = await dialog.showMessageBox(mainWindow, options, (response) => {
+      })
+      console.log(appendQueue.response)
+      if (appendQueue.response == 1) {
+        queue = queue.concat(queueImport)
+        console.log(queue)
+        console.log(queueImport)
+        queueImport = []
+      } else if (appendQueue.response == 2) {
+        queue = queueImport
+        console.log(queue)
+        console.log(queueImport)
+        queueImport = []
+      } else {
+        queueImportAmount = []
+        queueImport = []
+      }
+    }
+    
 
     mainWindow.webContents.send('ListUpdate', queue)
-    var importAmount = queue.length
-    mainWindow.webContents.send('errorEvent', 'Successfully imported ' + importAmount + ' songs!')
+    const importAmount = queueImportAmount.length
+    if (importAmount == 0) {
+      mainWindow.webContents.send('errorEvent', 'There was no songs to import!')
+    } else {
+      mainWindow.webContents.send('errorEvent', 'Successfully imported ' + importAmount + ' songs!')
+    }
+    queueImportAmount = []
   }else {
     mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
     shell.beep()
