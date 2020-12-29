@@ -336,6 +336,7 @@ ipcMain.on('moveDown', async (event, _songInfo) => {
 let queueImport = []
 let queueImportAmount = []
 let appendQueue
+let cancelImport
 ipcMain.on('importQueue', async () => {
   const filePath = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
@@ -373,14 +374,13 @@ ipcMain.on('importQueue', async () => {
     
     if (queue.length < 1) {
       queue = queueImport
-      console.log(queue)
-      console.log(queueImport)
       queueImport = []
     } else {
       const options = {
         type: 'warning',
         defaultId: 0,
         buttons: [ 'Cancel', 'Yes', 'No' ],
+        cancelId: 3,
         noLink: true,
         title: 'Append import to current queue?',
         message: 'Would you like to add the imported queue to the current list?',
@@ -391,15 +391,12 @@ ipcMain.on('importQueue', async () => {
       console.log(appendQueue.response)
       if (appendQueue.response == 1) {
         queue = queue.concat(queueImport)
-        console.log(queue)
-        console.log(queueImport)
         queueImport = []
       } else if (appendQueue.response == 2) {
         queue = queueImport
-        console.log(queue)
-        console.log(queueImport)
         queueImport = []
       } else {
+        cancelImport = true
         queueImportAmount = []
         queueImport = []
       }
@@ -408,7 +405,10 @@ ipcMain.on('importQueue', async () => {
 
     mainWindow.webContents.send('ListUpdate', queue)
     const importAmount = queueImportAmount.length
-    if (importAmount == 0) {
+    if (cancelImport == true) {
+      mainWindow.webContents.send('errorEvent', 'Queue import aborted!')
+      cancelImport = false
+    } else if (importAmount == 0) {
       mainWindow.webContents.send('errorEvent', 'There was no songs to import!')
     } else {
       mainWindow.webContents.send('errorEvent', 'Successfully imported ' + importAmount + ' songs!')
