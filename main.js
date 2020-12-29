@@ -384,7 +384,7 @@ ipcMain.on('importQueue', async () => {
         noLink: true,
         title: 'Append import to current queue?',
         message: 'Would you like to add the imported queue to the current list?',
-        detail: 'Choosing "Yes" will add the songs imported to the current list, choosing "No" will delete and replace it with the imported songs. You can also cancel the current action.'
+        detail: 'Choosing "Yes" will add the songs imported to the current list, choosing "No" will delete and replace it with the imported songs. You can also "Cancel" importing.'
       }
       appendQueue = await dialog.showMessageBox(mainWindow, options, (response) => {
       })
