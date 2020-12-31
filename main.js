@@ -3,7 +3,7 @@ const { app, BrowserWindow, ipcMain, dialog, ipcRenderer, remote, shell } = requ
 const fs = require("fs")
 const fsPromises = fs.promises
 const path = require("path")
-var log = require('electron-log')
+const log = require('electron-log')
 const ytdl = require('ytdl-core')
 const ytpl = require ('ytpl')
 const DurationTime = require('duration-time-format')
@@ -42,7 +42,7 @@ let queueDeletedItems = []
 // })
 
 ipcMain.on('addSong', async (event, _songInfo) => {
-  var inputLink = _songInfo.url
+  const inputLink = _songInfo.url
   function contains(str, text) {
     return (str.indexOf(text) >= 0)
  }
@@ -52,7 +52,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
       try {
       const playlistID = await ytpl.getPlaylistID(inputLink)
       const playlistInfo = await ytpl(playlistID, {limit: Infinity})
-      var playlistInfoTitle = playlistInfo.title 
+      const playlistInfoTitle = playlistInfo.title 
       
 
       let newPlaylistItems = playlistInfo.items.map((item) => {
@@ -63,7 +63,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
             //isOriginal: item.author.name.includes('Topic')
         }
     })
-    var importAmount = newPlaylistItems.length
+    const importAmount = newPlaylistItems.length
     queue = queue.concat(newPlaylistItems)
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Imported ' + importAmount + ' songs from ' + playlistInfoTitle + '!')
@@ -184,8 +184,8 @@ ipcMain.on('clearQueue', async () => {
 
 ipcMain.on('removeLast', async () => {
   if (queue.length >= 1){
-  var lastRemoved = queue.pop()
-  var lastTitle = lastRemoved.title
+  const lastRemoved = queue.pop()
+  const lastTitle = lastRemoved.title
   mainWindow.webContents.send('ListUpdate', queue)
   mainWindow.webContents.send('errorEvent', 'Deleted: ' + lastTitle)
   }
@@ -198,7 +198,7 @@ ipcMain.on('removeLast', async () => {
 ipcMain.on('remove', async (event, _songInfo) => {
   // queue.pop()
   const { index } = _songInfo
-  var removedTitle = queue[index].title
+  const removedTitle = queue[index].title
   queue.splice(index, 1)
   mainWindow.webContents.send('ListUpdate', queue)
   mainWindow.webContents.send('errorEvent', 'Deleted: ' + removedTitle)
@@ -353,8 +353,8 @@ ipcMain.on('importQueue', async () => {
   })
   const jsonData = JSON.parse(fileData)
   if (Array.isArray(jsonData)) {
-    for(var i = 0; i < jsonData.length; i++) {
-      var obj = jsonData[i]
+    for(let i = 0; i < jsonData.length; i++) {
+      const obj = jsonData[i]
   
       //console.log(obj.title)
       //console.log(obj.link)
@@ -445,7 +445,7 @@ ipcMain.on('editSong', async (event, _songInfo) => {
   // queue.pop()
   let editWindow
   const { index } = _songInfo
-  var songEditTitle = queue[index].title
+  const songEditTitle = queue[index].title
   //queue.splice(index, 1)
   
   editWindow = new BrowserWindow({
@@ -469,8 +469,8 @@ ipcMain.on('editSong', async (event, _songInfo) => {
     editWindow.webContents.send('titleEvent', songEditTitle)
   })
     ipcMain.once('saveChanges', async (event, _songInfo) => {
-    var editTitle = _songInfo.title
-    var editPos = parseInt(_songInfo.position) - 1
+    const editTitle = _songInfo.title
+    const editPos = parseInt(_songInfo.position) - 1
     queue[songEditPos].title = editTitle
 
 
