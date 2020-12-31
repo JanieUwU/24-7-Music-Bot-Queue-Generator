@@ -26,6 +26,11 @@ let mainWindow
 let editWindow
 
 let queue = []
+let queueImport = []
+let queueImportAmount = []
+let appendQueue
+let cancelImport
+let queueDeletedItems = []
 
 // ipcMain.on('checkUpdate', async () => {
   
@@ -333,10 +338,6 @@ ipcMain.on('moveDown', async (event, _songInfo) => {
   //queue.splice(index, 1)
 })
 
-let queueImport = []
-let queueImportAmount = []
-let appendQueue
-let cancelImport
 ipcMain.on('importQueue', async () => {
   const filePath = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
