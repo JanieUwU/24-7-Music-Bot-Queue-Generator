@@ -82,12 +82,12 @@ ipc.on('ListUpdate', (event, message) => {
             upButton.style.backgroundSize = "cover"
             // if ctrl is held change image, if released (lags program if held for too long)
             const ctrlPressed = document.getElementById("body")
-            const ctrlHeld = false
+            let ctrlHeld = false
             ctrlPressed.addEventListener('keydown', event => {
                 if (event.ctrlKey || event.metaKey && ctrlHeld == false) {
                     upButton.style.backgroundImage = "url(../buttons/movetop.png)"
                     downButton.style.backgroundImage = "url(../buttons/movebottom.png)"
-                    ctrlHeld = true
+                    ctrlHeld = false
                     ctrlPressed.removeEventListener('keydown', event)
                     return
                 }
