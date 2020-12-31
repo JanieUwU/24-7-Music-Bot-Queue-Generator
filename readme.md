@@ -4,8 +4,8 @@
 A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
 
 # Download
-* Windows Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.6.6/24-7queue-generator-Setup-1.6.6.exe)
-* macOS Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.6.6/24-7queue.generator-macOS-1.6.6.dmg)
+* Windows Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.6.7/24-7queue-generator-Setup-1.6.7.exe)
+* macOS Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.6.7/24-7queue.generator-macOS-1.6.7.dmg)
 
 # Features
 * Import .24-7queue files
