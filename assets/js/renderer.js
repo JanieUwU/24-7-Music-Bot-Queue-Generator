@@ -88,16 +88,19 @@ ipc.on('ListUpdate', (event, message) => {
                     upButton.style.backgroundImage = "url(../buttons/movetop.png)"
                     downButton.style.backgroundImage = "url(../buttons/movebottom.png)"
                     ctrlHeld = true
-                    // ctrlPressed.removeEventListener('keydown', event)
+                    ctrlPressed.removeEventListener('keydown', event)
+                    return
                 }
-            })
+            }, { once: true })
             ctrlPressed.addEventListener('keyup', event => {
                 if (!event.ctrlKey || !event.metaKey && ctrlHeld == true) {
                     upButton.style.backgroundImage = "url(../buttons/up.png)"
                     downButton.style.backgroundImage = "url(../buttons/down.png)"
                     ctrlHeld = false
+                    ctrlPressed.removeEventListener('keydown', event)
+                    return
                 }
-            })
+            }, { once: true })
             // upButton.onmouseover = function() {
             //     upButton.style.backgroundImage = "url(../buttons/uphover.png)"
             //     upButton.style.backgroundSize = "cover"
