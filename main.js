@@ -8,8 +8,6 @@ const ytdl = require('ytdl-core')
 const ytpl = require ('ytpl')
 const DurationTime = require('duration-time-format')
 const { autoUpdater } = require("electron-updater")
-const { type } = require('os')
-const { emitWarning } = require('process')
 autoUpdater.checkForUpdatesAndNotify();
 
 // init log
