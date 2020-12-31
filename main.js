@@ -224,17 +224,19 @@ ipcMain.on('moveUp', async (event, _songInfo) => {
   }
   if (newPosUp < 0) {
     const newPos2Up = queue.length - 1
-    console.log(arrMove(queue, oldPosUp, newPos2Up))
-    console.log(oldPosUp)
-    console.log(newPosUp)
-    console.log(newPos2Up)
+    arrMove(queue, oldPosUp, newPos2Up)
+    // console.log(arrMove(queue, oldPosUp, newPos2Up))
+    // console.log(oldPosUp)
+    // console.log(newPosUp)
+    // console.log(newPos2Up)
     const pos2NumUp = newPos2Up + 1
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Moved: ' + upTitle + ' to #' + pos2NumUp)
   } else {
-    console.log(arrMove(queue, oldPosUp, newPosUp))
-    console.log(oldPosUp)
-    console.log(newPosUp)
+    arrMove(queue, oldPosUp, newPosUp)
+    // console.log(arrMove(queue, oldPosUp, newPosUp))
+    // console.log(oldPosUp)
+    // console.log(newPosUp)
     const posNumUp = newPosUp + 1
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Moved: ' + upTitle + ' to #' + posNumUp)
@@ -264,7 +266,8 @@ ipcMain.on('moveTop', async (event, _songInfo) => {
     mainWindow.webContents.send('errorEvent', 'Song already at the top of the queue!')
     shell.beep()
   } else {
-    console.log(arrMove(queue, oldPosTop, newPosTop))
+    arrMove(queue, oldPosTop, newPosTop)
+    // console.log(arrMove(queue, oldPosTop, newPosTop))
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Moved: ' + topTitle + ' to top of the queue!')
   }
@@ -292,7 +295,8 @@ ipcMain.on('moveEnd', async (event, _songInfo) => {
     mainWindow.webContents.send('errorEvent', 'Song already at the end of the queue!')
     shell.beep()
   } else {
-    console.log(arrMove(queue, oldPosEnd, newPosEnd))
+    arrMove(queue, oldPosEnd, newPosEnd)
+    // console.log(arrMove(queue, oldPosEnd, newPosEnd))
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Moved: ' + endTitle + ' to end of the queue!')
   }
@@ -318,17 +322,19 @@ ipcMain.on('moveDown', async (event, _songInfo) => {
   }
   if (newPosDown > queue.length - 1) {
     const newPos2Down = 0
-    console.log(arrMove(queue, oldPosDown, newPos2Down))
-    console.log(oldPosDown)
-    console.log(newPosDown)
-    console.log(newPos2Down)
+    arrMove(queue, oldPosDown, newPos2Down)
+    // console.log(arrMove(queue, oldPosDown, newPos2Down))
+    // console.log(oldPosDown)
+    // console.log(newPosDown)
+    // console.log(newPos2Down)
     const pos2NumDown = newPos2Down + 1
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Moved: ' + downTitle + ' to #' + pos2NumDown)
   } else {
-    console.log(arrMove(queue, oldPosDown, newPosDown))
-    console.log(oldPosDown)
-    console.log(newPosDown)
+    arrMove(queue, oldPosDown, newPosDown)
+    // console.log(arrMove(queue, oldPosDown, newPosDown))
+    // console.log(oldPosDown)
+    // console.log(newPosDown)
     const posNumDown = parseInt(newPosDown) + 1
     mainWindow.webContents.send('ListUpdate', queue)
     mainWindow.webContents.send('errorEvent', 'Moved: ' + downTitle + ' to #' + posNumDown)
@@ -491,10 +497,11 @@ ipcMain.on('editSong', async (event, _songInfo) => {
       return arr
     }
     if (editPos >= 0 && editPos < queue.length) {
-      console.log(queue)
-      console.log(arrayMove(queue, songEditPos, editPos))
-      console.log(songEditPos)
-      console.log(editPos)
+      // console.log(queue)
+      arrayMove(queue, songEditPos, editPos)
+      // console.log(arrayMove(queue, songEditPos, editPos))
+      // console.log(songEditPos)
+      // console.log(editPos)
       mainWindow.webContents.send('ListUpdate', queue)
       mainWindow.webContents.send('errorEvent', 'Moved: ' + editTitle + ' to #' + _songInfo.position)
     } else {
