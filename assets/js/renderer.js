@@ -2,6 +2,8 @@ ipc = require('electron').ipcRenderer
 ipc.on('message', (event, message) => console.log(message))
 const shell = require('electron').shell;
 
+let ctrlHeld = false
+
 const addSongButton = document.getElementById('addSongButton')
 addSongButton.addEventListener('click', event => {
     document.querySelector('#errorTextBox').innerText = ''
@@ -82,23 +84,20 @@ ipc.on('ListUpdate', (event, message) => {
             upButton.style.backgroundSize = "cover"
             // if ctrl is held change image, if released (lags program if held for too long)
             const ctrlPressed = document.getElementById("body")
-            let ctrlHeld = false
             ctrlPressed.addEventListener('keydown', event => {
-                if (event.ctrlKey || event.metaKey && ctrlHeld == false) {
+                if (event.ctrlKey || event.metaKey && !ctrlHeld) {
                     upButton.style.backgroundImage = "url(../buttons/movetop.png)"
                     downButton.style.backgroundImage = "url(../buttons/movebottom.png)"
-                    ctrlHeld = false
+                    ctrlHeld = true
                     ctrlPressed.removeEventListener('keydown', event)
-                    return
                 }
             }, { once: true })
             ctrlPressed.addEventListener('keyup', event => {
-                if (!event.ctrlKey || !event.metaKey && ctrlHeld == true) {
+                if (!event.ctrlKey || !event.metaKey && ctrlHeld) {
                     upButton.style.backgroundImage = "url(../buttons/up.png)"
                     downButton.style.backgroundImage = "url(../buttons/down.png)"
                     ctrlHeld = false
                     ctrlPressed.removeEventListener('keydown', event)
-                    return
                 }
             }, { once: true })
             // upButton.onmouseover = function() {
