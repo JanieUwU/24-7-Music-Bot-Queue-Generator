@@ -346,7 +346,7 @@ ipcMain.on('importQueue', async () => {
   const filePath = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
     filters: [
-      { name: '24-7queue file', extensions: ['24-7queue', '24-7-queue', 'json'] },
+      { name: '24-7queue file', extensions: ['24-7queue', '24-7-queue', 'json', 'queue'] },
     ]
   })
   if (filePath.canceled) {
@@ -357,7 +357,12 @@ ipcMain.on('importQueue', async () => {
   const fileData = await fsPromises.readFile(filePath.filePaths[0]).catch(err => {
     console.log(err)
   })
-  const jsonData = JSON.parse(fileData)
+  let jsonData = []
+  try {
+    jsonData = JSON.parse(fileData)
+  } catch (error) {
+    console.log('Json import failed')
+  }
   if (Array.isArray(jsonData)) {
     for(var i = 0; i < jsonData.length; i++) {
       var obj = jsonData[i]
@@ -365,11 +370,11 @@ ipcMain.on('importQueue', async () => {
       //console.log(obj.title)
       //console.log(obj.link)
       //console.log(parseInt(obj.time))
-      if (!obj.title || !obj.link || !parseInt(obj.time)) continue
+      if (!obj.title || (!obj.link && !obj.url) || !parseInt(obj.time || obj.duration)) continue
       const songImport = {
         title: obj.title,
-        link: obj.link,
-        time: parseInt(obj.time),
+        link: obj.link || obj.url,
+        time: parseInt(obj.time) || parseInt(obj.duration),
         //isOriginal: isOriginalBool
       }
       queueImport.push(songImport)
