@@ -1,4 +1,4 @@
-ipc = require('electron').ipcRenderer
+const ipc = require('electron').ipcRenderer
 ipc.on('message', (event, message) => console.log(message))
 const shell = require('electron').shell;
 

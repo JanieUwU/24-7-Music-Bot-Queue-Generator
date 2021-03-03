@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, dialog, ipcRenderer, remote, shell } = require('electron')
+const contextMenu = require('electron-context-menu')
 const fs = require("fs")
 const fsPromises = fs.promises
 const path = require("path")
@@ -434,16 +435,31 @@ ipcMain.on('exitapp', () => {
   app.quit()
 })
 
+contextMenu({
+  showInspectElement: false,
+  showLookUpSelection: false,
+  showSearchWithGoogle: false,
+  showCopyImage: false,
+  showCopyImageAddress: false,
+  showSaveImage: false,
+  showSaveImageAs: false,
+  showSaveLinkAs: false,
+  learnSpelling: false
+})
+
 app.on('ready', () => {
   log.info('app started')
 
   mainWindow = new BrowserWindow({
+    title: '24-7 Queue Generator',
     width: 850,
     height: 730,
     show: false,
     icon: __dirname + '/assets/logo.ico',
     webPreferences: {
-      nodeIntegration: true
+      contextIsolation: false,
+      nodeIntegration: true,
+      spellcheck: false
     }
   })
   mainWindow.setMenuBarVisibility(false)
@@ -466,7 +482,9 @@ ipcMain.on('editSong', async (event, _songInfo) => {
     show: false,
     icon: __dirname + '/assets/logo.ico',
     webPreferences: {
-      nodeIntegration: true
+      contextIsolation: false,
+      nodeIntegration: true,
+      spellcheck: false
     }
   })
   editWindow.setMenuBarVisibility(false)
