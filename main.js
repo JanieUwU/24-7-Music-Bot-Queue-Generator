@@ -444,7 +444,8 @@ contextMenu({
   showSaveImage: false,
   showSaveImageAs: false,
   showSaveLinkAs: false,
-  learnSpelling: false
+  learnSpelling: false,
+  copyLink:false
 })
 
 app.on('ready', () => {
@@ -459,7 +460,8 @@ app.on('ready', () => {
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
-      spellcheck: false
+      spellcheck: false,
+      copyLink: false
     }
   })
   mainWindow.setMenuBarVisibility(false)
@@ -484,7 +486,8 @@ ipcMain.on('editSong', async (event, _songInfo) => {
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
-      spellcheck: false
+      spellcheck: false,
+      copyLink: false
     }
   })
   editWindow.setMenuBarVisibility(false)
