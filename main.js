@@ -183,6 +183,26 @@ ipcMain.on('clearQueue', async () => {
   mainWindow.webContents.send('errorEvent', 'Cleared the queue!')
 })
 
+ipcMain.on('shuffleQueue', async () => {
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1;
+  
+      temporaryValue = array[currentIndex]
+      array[currentIndex] = array[randomIndex]
+      array[randomIndex] = temporaryValue
+    }
+    return array
+  }
+  shuffle(queue)
+
+  mainWindow.webContents.send('ListUpdate', queue)
+  mainWindow.webContents.send('errorEvent', 'Shuffled the queue!')
+})
+
 ipcMain.on('removeLast', async () => {
   if (queue.length >= 1){
   var lastRemoved = queue.pop()

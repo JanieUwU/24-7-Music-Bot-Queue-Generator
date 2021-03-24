@@ -37,6 +37,11 @@ generateQueue.addEventListener('click', event => {
     ipc.send('generateQueue')
 })
 
+const shuffleQueue = document.getElementById('shuffle')
+shuffleQueue.addEventListener('click', event => {
+    ipc.send('shuffleQueue')
+})
+
 const importQueue = document.getElementById('importQueue')
 importQueue.addEventListener('click', event => {
     ipc.send('importQueue')
