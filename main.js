@@ -52,7 +52,7 @@ ipcMain.on('addSong', async (event, _songInfo) => {
     //mainWindow.webContents.send('errorEvent', 'Playlist = True!')
       try {
       const playlistID = await ytpl.getPlaylistID(inputLink)
-      const playlistInfo = await ytpl(playlistID, {limit: Infinity})
+      const playlistInfo = await ytpl(playlistID, {limit: Infinity}, {pages: Infinity})
       var playlistInfoTitle = playlistInfo.title 
       
 
