@@ -54,12 +54,12 @@
 
     button {
       border: none;
-      background: white;
+      background: rgba(0, 0, 0, 0.363);
       border-radius: 5px;
       padding: 20px;
       margin: 5px;
       /* width: 25%; */
-      color: black;
+      color: rgb(255, 255, 255);
       transition-duration: 250ms;
     }
 
