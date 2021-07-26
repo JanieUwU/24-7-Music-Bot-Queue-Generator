@@ -30,8 +30,7 @@ document.addEventListener('drop', (event) => {
 document.addEventListener('dragover', (e) => {
     e.preventDefault()
     e.stopPropagation()
-  })
-
+})
 // const updateButton = document.getElementById('checkUpdate')
 // updateButton.addEventListener('click', event => {
 //     ipc.send('checkUpdate')
