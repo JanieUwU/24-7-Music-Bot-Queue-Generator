@@ -24,7 +24,7 @@ A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
     * Remove last song in the list
     * Export to new file or save over the original file
 
-* Import<img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/search.png" alt="trash.png" height="20" width="20"/> songs from [Youtube](https://www.youtube.com/)
+* Import<img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/buttons/search.png" alt="search.png" height="20" width="20"/> songs from [Youtube](https://www.youtube.com/)
     * Add new songs to the queue 
     * Import playlists(public and unlisted only)
 
