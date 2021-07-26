@@ -16,6 +16,22 @@ addSongButton.addEventListener('click', event => {
     }
 })
 
+document.addEventListener('drop', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  
+    for (const dragPath of event.dataTransfer.files) {
+        // Using the path attribute to get absolute file path
+        console.log('File Path of dragged files: ', dragPath.path)
+        ipc.send('fileDragPath', dragPath.path)
+      }
+})
+
+document.addEventListener('dragover', (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  })
+
 // const updateButton = document.getElementById('checkUpdate')
 // updateButton.addEventListener('click', event => {
 //     ipc.send('checkUpdate')

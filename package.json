@@ -38,17 +38,16 @@
       "oneClick": false,
       "perMachine": true,
       "allowToChangeInstallationDirectory": true
-    }
+    },
+    "fileAssociations": [
+      {
+        "ext": "24-7queue",
+        "name": "24-7 Queue",
+        "description": "Queue file for the 24/7 Discord music bot.",
+        "perMachine": true
+      }
+    ]
   },
-  "fileAssociations": [
-    {
-      "name": "24-7 Queue",
-      "description": "Queue file for the 24/7 Discord music bot.",
-      "ext": [
-        "24-7queue"
-      ]
-    }
-  ],
   "author": "JustWorks",
   "devDependencies": {
     "electron": "^13.1.7",
