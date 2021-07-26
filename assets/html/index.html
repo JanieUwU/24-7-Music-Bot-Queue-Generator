@@ -15,7 +15,7 @@
  
   <h1>
     <span id="h1Text">
-      24-7queue generator
+      24-7 Queue Generator
     </span>
     <!-- <button id="checkUpdate">
       Check for updates
@@ -33,16 +33,16 @@
     <div class="apiFormItem">
       <p>Video/playlist link:</p>
       <input type="text" name="ytUrl" id="ytUrl" placeholder="https://www.youtube.com/watch?v=01234455">
-      <button id="addSongButton">Import</button>
+      <button id="addSongButton" title="Add songs to queue."></button>
     </div>
 
     <div>
 
-      <button id="importQueue">Import queue</button>
-      <button id="generateQueue">Export queue</button>
-      <button id="clearQueue">Clear queue</button>
-      <button id="shuffle">Shuffle</button>
-      <button id="removeLast">Remove last song</button>
+      <button id="importQueue" title="Import .24-7queue file.">Import queue</button>
+      <button id="generateQueue" title="Save current list to a .24-7queue file.">Export queue</button>
+      <button id="clearQueue" title="Deletes all contents of currently loaded list.">Clear queue</button>
+      <button id="shuffle" title="Randomize currently loaded list items.">Shuffle</button>
+      <button id="removeLast" title="Removes last item from the list.">Remove last song</button>
     </div>
 
     <div id="listView"></div>

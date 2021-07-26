@@ -81,6 +81,7 @@ ipc.on('ListUpdate', (event, message) => {
             // make move song up button
             const upButton = document.createElement('button')
             upButton.style.height = '30px'
+            upButton.title = 'Move song up.'
             upButton.style.width = '30px'
             upButton.style.float = 'right'
             upButton.style.marginRight = '0px'
@@ -136,6 +137,7 @@ ipc.on('ListUpdate', (event, message) => {
             })
             // make move song down button
             const downButton = document.createElement('button')
+            downButton.title = 'Move song down.'
             downButton.style.height = '30px'
             downButton.style.width = '30px'
             downButton.style.float = 'right'
@@ -166,6 +168,7 @@ ipc.on('ListUpdate', (event, message) => {
             })
             // make edit button
             const editButton = document.createElement('button')
+            editButton.title = 'Edit the song title and position.'
             editButton.style.height = '30px'
             editButton.style.width = '30px'
             editButton.style.float = 'right'
@@ -194,6 +197,7 @@ ipc.on('ListUpdate', (event, message) => {
             })
             // make remove button
             const removeButton = document.createElement('button')
+            removeButton.title = 'Delete the song.'
             removeButton.style.height = '50px'
             removeButton.style.width = '50px'
             removeButton.style.backgroundImage = "url(../buttons/trash.png)"
