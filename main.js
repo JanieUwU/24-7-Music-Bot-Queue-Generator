@@ -15,9 +15,8 @@ autoUpdater.checkForUpdatesAndNotify();
 log.transports.file.level = 'info'
 log.transports.file.format = '{h}:{i}:{s}:{ms} {text}'
 log.transports.file.maxSize = 5 * 1024 * 1024
-log.transports.file.file = __dirname + '/log.txt'
 log.transports.file.streamConfig = { flags: 'w' }
-log.transports.file.stream = fs.createWriteStream('log.txt')
+log.transports.file.stream = fs.createWriteStream(path.join(app.getPath(`userData`), 'log.txt'))
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -41,6 +40,8 @@ let queueDeletedItems = []
 //   module.exports.checkForUpdates = checkForUpdates
 //   require('child_process').fork('./assets/js/updater.js')
 // })
+
+log.info('processArg', process.argv)
 
 ipcMain.on('addSong', async (event, _songInfo) => {
   var inputLink = _songInfo.url
@@ -364,82 +365,83 @@ ipcMain.on('moveDown', async (event, _songInfo) => {
 })
 
 ipcMain.on('fileDragPath', async (event, arg) => {
-  const fileData = fs.readFileSync(arg)
-  let jsonData = []
-  try {
-    jsonData = JSON.parse(fileData)
-  } catch (error) {
-    console.log('Json import failed')
-  }
-  if (Array.isArray(jsonData)) {
-    for(var i = 0; i < jsonData.length; i++) {
-      var obj = jsonData[i]
+  importQueueFromFile(arg)
+  // const fileData = fs.readFileSync(arg)
+  // let jsonData = []
+  // try {
+  //   jsonData = JSON.parse(fileData)
+  // } catch (error) {
+  //   console.log('Json import failed')
+  // }
+  // if (Array.isArray(jsonData)) {
+  //   for(var i = 0; i < jsonData.length; i++) {
+  //     var obj = jsonData[i]
   
-      //console.log(obj.title)
-      //console.log(obj.link)
-      //console.log(parseInt(obj.time))
-      if (!obj.title || (!obj.link && !obj.url) || !parseInt(obj.time || obj.duration)) continue
-      const songImport = {
-        title: obj.title,
-        link: obj.link || obj.url,
-        time: parseInt(obj.time) || parseInt(obj.duration),
-        //isOriginal: isOriginalBool
-      }
-      queueImport.push(songImport)
-      queueImportAmount.push(songImport)
-   }
-    if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!') && shell.beep()
+  //     //console.log(obj.title)
+  //     //console.log(obj.link)
+  //     //console.log(parseInt(obj.time))
+  //     if (!obj.title || (!obj.link && !obj.url) || !parseInt(obj.time || obj.duration)) continue
+  //     const songImport = {
+  //       title: obj.title,
+  //       link: obj.link || obj.url,
+  //       time: parseInt(obj.time) || parseInt(obj.duration),
+  //       //isOriginal: isOriginalBool
+  //     }
+  //     queueImport.push(songImport)
+  //     queueImportAmount.push(songImport)
+  //  }
+  //   if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!') && shell.beep()
     
-    if (queue.length < 1) {
-      queue = queueImport
-      queueImport = []
-    } else {
-      const options = {
-        type: 'warning',
-        defaultId: 0,
-        buttons: [ 'Cancel', 'Yes', 'No' ],
-        cancelId: 3,
-        noLink: true,
-        title: 'Append import to current queue?',
-        message: 'Would you like to add the imported queue to the current list?',
-        detail: 'Choosing "Yes" will add the songs imported to the current list, choosing "No" will delete and replace it with the imported songs. You can also "Cancel" importing.'
-      }
-      appendQueue = await dialog.showMessageBox(mainWindow, options, (response) => {
-      })
-      console.log(appendQueue.response)
-      if (appendQueue.response == 1) {
-        queue = queue.concat(queueImport)
-        queueImport = []
-      } else if (appendQueue.response == 2) {
-        queue = queueImport
-        queueImport = []
-      } else {
-        cancelImport = true
-        queueImportAmount = []
-        queueImport = []
-      }
-    }
+  //   if (queue.length < 1) {
+  //     queue = queueImport
+  //     queueImport = []
+  //   } else {
+  //     const options = {
+  //       type: 'warning',
+  //       defaultId: 0,
+  //       buttons: [ 'Cancel', 'Yes', 'No' ],
+  //       cancelId: 3,
+  //       noLink: true,
+  //       title: 'Append import to current queue?',
+  //       message: 'Would you like to add the imported queue to the current list?',
+  //       detail: 'Choosing "Yes" will add the songs imported to the current list, choosing "No" will delete and replace it with the imported songs. You can also "Cancel" importing.'
+  //     }
+  //     appendQueue = await dialog.showMessageBox(mainWindow, options, (response) => {
+  //     })
+  //     console.log(appendQueue.response)
+  //     if (appendQueue.response == 1) {
+  //       queue = queue.concat(queueImport)
+  //       queueImport = []
+  //     } else if (appendQueue.response == 2) {
+  //       queue = queueImport
+  //       queueImport = []
+  //     } else {
+  //       cancelImport = true
+  //       queueImportAmount = []
+  //       queueImport = []
+  //     }
+  //   }
     
 
-    mainWindow.webContents.send('ListUpdate', queue)
-    const importAmount = queueImportAmount.length
-    if (cancelImport == true) {
-      mainWindow.webContents.send('errorEvent', 'Queue import aborted!')
-      cancelImport = false
-    } else if (importAmount == 0) {
-      mainWindow.webContents.send('errorEvent', 'There was no songs to import!')
-    } else {
-      mainWindow.webContents.send('errorEvent', 'Successfully imported ' + importAmount + ' songs!')
-    }
-    queueImportAmount = []
-  }else {
-    mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
-    shell.beep()
-  }
+  //   mainWindow.webContents.send('ListUpdate', queue)
+  //   const importAmount = queueImportAmount.length
+  //   if (cancelImport == true) {
+  //     mainWindow.webContents.send('errorEvent', 'Queue import aborted!')
+  //     cancelImport = false
+  //   } else if (importAmount == 0) {
+  //     mainWindow.webContents.send('errorEvent', 'There was no songs to import!')
+  //   } else {
+  //     mainWindow.webContents.send('errorEvent', 'Successfully imported ' + importAmount + ' songs!')
+  //   }
+  //   queueImportAmount = []
+  // }else {
+  //   mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
+  //   shell.beep()
+  // }
 })
 
-ipcMain.on('importQueue', async () => {
-  const filePath = await dialog.showOpenDialog(mainWindow, {
+async function importQueueFromFile(_filePath) {
+  const filePath = _filePath || await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
     filters: [
       { name: '24-7queue file', extensions: ['24-7queue', '24-7-queue', 'json', 'queue'] },
@@ -450,7 +452,7 @@ ipcMain.on('importQueue', async () => {
     return
   }
 
-  const fileData = await fsPromises.readFile(filePath.filePaths[0]).catch(err => {
+  const fileData = await fsPromises.readFile(filePath.filePaths ? filePath.filePaths[0] : filePath).catch(err => {
     console.log(err)
   })
   let jsonData = []
@@ -524,6 +526,10 @@ ipcMain.on('importQueue', async () => {
     mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!')
     shell.beep()
   }
+}
+
+ipcMain.on('importQueue', async () => {
+  importQueueFromFile()
 })
 
 ipcMain.on('exitapp', () => {
@@ -543,7 +549,7 @@ contextMenu({
   copyLink:false
 })
 
-app.on('ready', () => {
+app.on('ready', async () => {
   log.info('app started')
 
   mainWindow = new BrowserWindow({
@@ -561,8 +567,11 @@ app.on('ready', () => {
   })
   mainWindow.setMenuBarVisibility(false)
 
-  mainWindow.loadFile(path.join(__dirname, './assets/html/index.html'))
+  await mainWindow.loadFile(path.join(__dirname, './assets/html/index.html'))
   mainWindow.show()
+  if(process.argv && process.argv[1]) {
+    importQueueFromFile(process.argv[1])
+  }
 })
 
 ipcMain.on('editSong', async (event, _songInfo) => {

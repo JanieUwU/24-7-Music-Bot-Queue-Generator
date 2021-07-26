@@ -61,6 +61,7 @@
       /* width: 25%; */
       color: rgb(255, 255, 255);
       transition-duration: 250ms;
+      cursor: pointer;
     }
 
     button:hover {
@@ -94,7 +95,8 @@
     }
 
     #clearQueue {
-      color: rgb(204, 46, 46);
+      background: rgba(255, 2, 2, 0.384);
+      color: #ffffff;
     }
 
     #clearQueue:hover {
@@ -103,7 +105,8 @@
     }
 
     #removeLast {
-      color: rgb(204, 46, 46);
+      background: rgba(255, 2, 2, 0.384);
+      color: #ffffff;
     }
 
     #removeLast:hover {
