@@ -43,7 +43,7 @@
       {
         "ext": "24-7queue",
         "name": "24-7 Queue",
-        "description": "Queue file for the 24/7 Discord music bot."
+        "description": "24-7QUEUE File"
       }
     ]
   },
