@@ -1,6 +1,6 @@
 {
   "name": "24-7queue-generator",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "Allows users to manually generate 24-7queue files for the 24/7 🔊 discord music bot.",
   "main": "main.js",
   "scripts": {
@@ -43,8 +43,7 @@
       {
         "ext": "24-7queue",
         "name": "24-7 Queue",
-        "description": "Queue file for the 24/7 Discord music bot.",
-        "perMachine": true
+        "description": "Queue file for the 24/7 Discord music bot."
       }
     ]
   },
