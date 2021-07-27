@@ -41,8 +41,6 @@ let queueDeletedItems = []
 //   require('child_process').fork('./assets/js/updater.js')
 // })
 
-log.info('processArg', process.argv)
-
 ipcMain.on('addSong', async (event, _songInfo) => {
   var inputLink = _songInfo.url
   function contains(str, text) {
@@ -451,7 +449,11 @@ async function importQueueFromFile(_filePath) {
     mainWindow.webContents.send('errorEvent', 'Queue import aborted!')
     return
   }
-
+  if (filePath === ".") {
+    return
+  }
+  //console.log(fileData)
+  console.log(filePath)
   const fileData = await fsPromises.readFile(filePath.filePaths ? filePath.filePaths[0] : filePath).catch(err => {
     console.log(err)
   })
