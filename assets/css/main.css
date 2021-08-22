@@ -80,6 +80,12 @@
       outline: none;
     }
 
+    #errorTextBox {
+      text-align: center;
+      width: 80%;
+      -webkit-line-clamp: 2;
+    }
+
     #addSongButton {
       background: url(../buttons/search.png);
       height: 60px;

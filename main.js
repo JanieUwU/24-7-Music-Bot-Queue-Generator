@@ -41,6 +41,10 @@ let queueDeletedItems = []
 //   require('child_process').fork('./assets/js/updater.js')
 // })
 
+function truncate(str, n){
+  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+}
+
 ipcMain.on('addSong', async (event, _songInfo) => {
   var inputLink = _songInfo.url
   function contains(str, text) {
@@ -478,6 +482,7 @@ async function importQueueFromFile(_filePath) {
       //console.log(obj.title)
       //console.log(obj.link)
       //console.log(parseInt(obj.time))
+      
       if (!obj.title || (!obj.link && !obj.url) || !parseInt(obj.time || obj.duration)) continue
       const songImport = {
         title: obj.title,
@@ -485,8 +490,15 @@ async function importQueueFromFile(_filePath) {
         time: parseInt(obj.time) || parseInt(obj.duration),
         //isOriginal: isOriginalBool
       }
-      queueImport.push(songImport)
-      queueImportAmount.push(songImport)
+      if (songImport.title.length > 100) {
+        songImport.title = truncate(songImport.title, 100)
+        queueImport.push(songImport)
+        queueImportAmount.push(songImport)
+      } else {
+        queueImport.push(songImport)
+        queueImportAmount.push(songImport)
+      }
+      
    }
     if (queueImport.length < 1) return mainWindow.webContents.send('errorEvent', 'Error: File is corrupt or not in the correct format!') && shell.beep()
     
@@ -565,7 +577,7 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     title: '24-7 Queue Generator',
     width: 850,
-    height: 730,
+    height: 740,
     show: false,
     icon: __dirname + '/assets/logo.ico',
     webPreferences: {

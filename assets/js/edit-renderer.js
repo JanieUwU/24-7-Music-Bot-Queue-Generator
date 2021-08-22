@@ -4,13 +4,19 @@ const shell = require('electron').shell;
 
 const saveChanges = document.getElementById('saveChanges')
 saveChanges.addEventListener('click', event => {
-    if (document.getElementById('Position').value) {
+    if (document.getElementById('Position').value && document.getElementById('Title').value) {
         ipcEdit.send('saveChanges', {
             title: document.getElementById('Title').value,
             position: document.getElementById('Position').value
         })
         ipcEdit.removeAllListeners('saveChanges')
         ipcEdit.removeAllListeners('editSong')
+    } else if (!document.getElementById('Position').value && !document.getElementById('Title').value) {
+        ipcEdit.send('saveChangesFail')
+        alert('Please input a song title and position number.')
+    } else if (!document.getElementById('Title').value) {
+        ipcEdit.send('saveChangesFail')
+        alert('Please input a song title.')
     } else {
         ipcEdit.send('saveChangesFail')
         alert('Please input a song position number.')
