@@ -224,6 +224,14 @@ ipcMain.on('remove', async (event, _songInfo) => {
   mainWindow.webContents.send('errorEvent', 'Deleted: ' + removedTitle)
 })
 
+ipcMain.on('openLink', async (event, _songInfo) => {
+  const { index } = _songInfo
+  const openLink = queue[index].link
+  //const openTitle = queue[index].title
+  mainWindow.webContents.send('errorEvent', 'Opening link: ' + openLink)
+  shell.openExternal(openLink)
+})
+
 ipcMain.on('moveUp', async (event, _songInfo) => {
   // queue.pop()
   const { index } = _songInfo

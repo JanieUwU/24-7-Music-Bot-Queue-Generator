@@ -181,6 +181,35 @@ ipc.on('ListUpdate', (event, message) => {
                     })
                 }
             })
+            // make open link button
+            const openLinkButton = document.createElement('button')
+            openLinkButton.title = 'Open song link.'
+            openLinkButton.style.height = '30px'
+            openLinkButton.style.width = '30px'
+            openLinkButton.style.float = 'right'
+            openLinkButton.style.marginRight = '0px'
+            openLinkButton.style.marginLeft = '2px'
+            openLinkButton.style.backgroundImage = "url(../buttons/openlink.png)"
+            openLinkButton.style.backgroundSize = "cover"
+            openLinkButton.style.backgroundColor = 'transparent'
+            openLinkButton.onmouseover = function() {
+                openLinkButton.style.backgroundImage = "url(../buttons/openlink.png)"
+                openLinkButton.style.backgroundSize = "cover"
+                openLinkButton.style.outlineStyle = 'solid'
+                openLinkButton.style.outlineColor = 'white'
+            }
+            openLinkButton.onmouseout = function() {
+                openLinkButton.style.backgroundImage = "url(../buttons/openlink.png)"
+                openLinkButton.style.backgroundSize = "cover"
+                openLinkButton.style.outlineStyle = 'none'
+            }
+            innerContainer.appendChild(openLinkButton)
+            // make downButton click listener
+            openLinkButton.addEventListener('click', event => {
+                ipc.send('openLink', {
+                    index: key,
+                })
+            })
             // make edit button
             const editButton = document.createElement('button')
             editButton.title = 'Edit the song title and position.'
