@@ -1,6 +1,7 @@
 ipcEdit = require('electron').ipcRenderer
 ipcEdit.on('message', (event, message) => console.log(message))
-const shell = require('electron').shell;
+const shell = require('electron').shell
+const { dialog } = require('electron')
 
 const saveChanges = document.getElementById('saveChanges')
 saveChanges.addEventListener('click', event => {
@@ -12,14 +13,17 @@ saveChanges.addEventListener('click', event => {
         ipcEdit.removeAllListeners('saveChanges')
         ipcEdit.removeAllListeners('editSong')
     } else if (!document.getElementById('Position').value && !document.getElementById('Title').value) {
-        ipcEdit.send('saveChangesFail')
+        shell.beep()
         alert('Please input a song title and position number.')
+        ipcEdit.send('saveChangesFail')
     } else if (!document.getElementById('Title').value) {
-        ipcEdit.send('saveChangesFail')
+        shell.beep()
         alert('Please input a song title.')
-    } else {
         ipcEdit.send('saveChangesFail')
+    } else {
+        shell.beep()
         alert('Please input a song position number.')
+        ipcEdit.send('saveChangesFail')
     }
 })
 

@@ -676,7 +676,7 @@ ipcMain.on('editSong', async (event, _songInfo) => {
 
 ipcMain.on('saveChangesFail', async (event, _songInfo) => {
   mainWindow.webContents.send('errorEvent', 'Error saving song info, no value given.')
-  shell.beep()
+  mainWindow.focus()
 })
 
 // ipcMain.on('saveChanges', async (event, _songInfo) => {
