@@ -1,12 +1,12 @@
 # 24-7 queue generator <img src="https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/raw/master/assets/logo.png" alt="24/7 Logo" height="120" width="120"/>
 ![GitHub all releases](https://img.shields.io/github/downloads/JanieUwU/24-7-Music-Bot-Queue-Generator/total?label=total%20downloads&style=plastic)
-![GitHub release (latest by date and asset)](https://img.shields.io/github/downloads/JanieUwU/24-7-Music-Bot-Queue-Generator/latest/24-7queue-generator-Setup-1.7.6.exe?style=plastic)
+![GitHub release (latest by date and asset)](https://img.shields.io/github/downloads/JanieUwU/24-7-Music-Bot-Queue-Generator/latest/24-7queue-generator-Setup-1.7.7.exe?style=plastic)
 
 A queue generator for the [24/7 Discord Music Bot](https://24-7music.com/).
 
 # Download
-* Windows Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.7.6/24-7queue-generator-Setup-1.7.6.exe)
-* macOS Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.7.6/24-7queue.generator-macOS-1.7.6.dmg)
+* Windows Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.7.7/24-7queue-generator-Setup-1.7.7.exe)
+* macOS Installer: [Latest Release(Github)](https://github.com/JanieUwU/24-7-Music-Bot-Queue-Generator/releases/download/v1.7.7/24-7queue.generator-macOS-1.7.7.dmg)
 
 # Preview Image
 <img src="https://i.imgur.com/81vuACZ.png" alt="preview.png"/>
